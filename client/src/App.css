@@ -1,68 +1,106 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* padding: 10px; */
+  margin-top: 10px;
 }
 
-.App{
+.App {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.App form{
+.App .deck-title {
+  margin: 0 auto;
+}
+
+.App form {
   display: flex;
   gap: 10px;
   justify-content: center;
   align-items: center;
 }
-.App form input{
-  width: 200px;
+
+.App form input {
+  width: 100%;
+  max-width: 200px;
   height: 30px;
   background: skyblue;
   font-size: larger;
 }
-.App form input::placeholder{
+
+.App form input::placeholder {
   font-size: large;
-  color: rgb(0, 0, 0, 0.7);
-  /* align-items: center; */
+  color: rgba(0, 0, 0, 0.7);
   padding-inline-start: 20px;
-}
-
-
-.decks li{
-  display: flex;
-  /* text-decoration: none; */
-  height: 120px;
-  background: rgb(182, 178, 133);
-  border-radius: 10px;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
-}
-
-.decks li button{
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  font-size: 8px;
-  background-color: transparent;
-}
-/* .decks li button:hover */
-
-.decks li:hover{
-  background: rgb(132, 130, 105);
-  cursor: pointer;
 }
 
 .decks {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  grid-gap: 10px;
-  width: 600px;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
   margin: 0 auto;
 }
 
+.decks li {
+  display: flex;
+  height: 180px;
+  background: rgb(182, 178, 133);
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  position: relative;
+  overflow-y: auto;
+  padding: 5px;
+  word-break: break-all;
+}
 
+.decks li::-webkit-scrollbar {
+  display: none;
+}
+
+.decks li button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 10px;
+  background-color: transparent;
+  border: none;
+  color: blue;
+}
+
+.decks li button:focus {
+  outline: none;
+}
+
+.decks li:hover {
+  background: rgb(157, 155, 129);
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .decks {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns for medium screens */
+  }
+}
+
+@media (max-width: 600px) {
+  .decks {
+    grid-template-columns: 1fr; /* 1 column for small screens */
+  }
+
+  .App form input {
+    width: 100%;
+    max-width: 180px;
+    height: 30px;
+  }
+
+  .decks li {
+    height: 120px;
+  }
+}

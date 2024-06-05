@@ -33,6 +33,7 @@ function App() {
   }
 
   return (
+    <div className="container">
     <div className="App">
       <ul className="decks">
         {decks.map((deck) => (
@@ -49,13 +50,14 @@ function App() {
           id="deck_input"
           type="text"
           value={title}
-          placeholder="Write Deck Title"
+          placeholder="Create Deck"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
             setTitle(e.target.value);
           }}
         />
         <button>Create</button>
       </form>
+    </div>
     </div>
   );
 }

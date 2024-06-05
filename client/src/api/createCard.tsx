@@ -1,6 +1,7 @@
 import { API_URL } from "./config";
+import { TDeck } from "./getDecks";
 
-export default async function createCard(deckId : string,  text: string){
+export default async function createCard(deckId : string,  text: string): Promise<TDeck>{
     const response = await fetch(`${API_URL}/decks/${deckId}/cards`, {
       method: "POST",
       body: JSON.stringify({
@@ -11,5 +12,5 @@ export default async function createCard(deckId : string,  text: string){
       },
     });
 
-    return response.json
+    return response.json()
 }
