@@ -5,6 +5,7 @@ import cors from "cors"
 config();
 const app = express();
 const PORT = process.env.PORT || 5000;
+const MONGODB_URI = process.env.MONGO_URI || '';
 
 import Deck from "./models/Deck";
 import { getDecksController } from "./controllers/getDecksController";
@@ -30,8 +31,13 @@ app.post("/decks/:deckId/cards", createCardForDeckController);
 app.delete("/decks/:deckId/cards/:index", deleteCardOnDeckController);
 
 
-mongoose.connect(process.env.MONGO_URI!).then(() => {
+mongoose.connect(MONGODB_URI)
+.then(() => {
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
   });
+})
+.catch((error) => {
+  console.error('Error connecting to MongoDB:', error);
+  console.error('Mongoose connection error:', error.reason);
 });
